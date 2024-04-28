@@ -25,7 +25,7 @@ const id = nanoid()
             r="1"
             gradientUnits="userSpaceOnUse"
             gradientTransform="rotate(78.858 46.989 644.69) scale(665.5 665.824)"
-            ><stop stop-color="#1BA1E3" /><stop
+            ><stop stop-color="#1BA1E3"  offset="0"/><stop
                 offset="0"
                 stop-color="#1BA1E3"
             /><stop offset=".3" stop-color="#5489D6" /><stop
@@ -42,7 +42,7 @@ const id = nanoid()
             r="1"
             gradientUnits="userSpaceOnUse"
             gradientTransform="rotate(78.858 46.989 644.69) scale(665.5 665.824)"
-            ><stop stop-color="#1BA1E3" /><stop
+            ><stop stop-color="#1BA1E3" offset="0"/><stop
                 offset="0"
                 stop-color="#1BA1E3"
             /><stop offset=".3" stop-color="#5489D6" /><stop
