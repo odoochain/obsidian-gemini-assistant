@@ -1,0 +1,36 @@
+name: Manual Release Creation
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag version to release (e.g., v1.0.0)'
+        required: true
+
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Extract the tag name from the input
+          TAG_NAME=${{ github.event.inputs.tag_name }}
+
+          # Check if the tag exists in the repository
+          git fetch --tags
+          if ! git tag --list | grep -q "^$TAG_NAME$"; then
+              echo "Error: Tag $TAG_NAME does not exist in this repository."
+              exit 1
+          fi
+
+          # Create the release using the GitHub CLI (gh)
+          gh release create "$TAG_NAME" \
+            --title="$TAG_NAME" \
+            --notes="Release created manually via GitHub Actions." \
+            main.js manifest.json styles.css
+        shell: bash
